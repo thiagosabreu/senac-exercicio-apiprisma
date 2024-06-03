@@ -5,9 +5,11 @@ export const createPost = async (title, userId, subtitle, body) => {
         return await prisma.post.create({
             data: {
                 title,
-                userId,
                 subtitle,
                 body,
+                author: {
+                    connect: { id: userId}
+                }
             },
         });
     } catch (error) {
